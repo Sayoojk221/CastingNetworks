@@ -20,33 +20,46 @@
                         <div class="login-box row">
                             <h3>Creator Registeration</h3>
 
-                            <form method='POST' action='/companyregister/'
+                            <form method='POST' action='/companyregister/'  enctype='multipart/form-data'
                             oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
                             {% csrf_token %}
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-image"></i></span>
+                              </div>
+                              <input type="File" class="form-control" placeholder="Company logo" name="logo" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                               </div>
-                              <input type="text" class="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1">
+                              <input type="text" class="form-control" placeholder="Company Name" name="companyname" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
                               </div>
-                              <input type="text" class="form-control" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
+                              <input type="text" class="form-control" placeholder="Email Address" name="email" aria-describedby="basic-addon1">
                             </div>
                              <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                               </div>
-                              <input type="password" class="form-control" name='up' placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                              <input type="password" class="form-control"  placeholder="Password" name="pass" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                               </div>
-                              <input type="password" class="form-control" name='up2' placeholder="Repeat Password" aria-label="Username" aria-describedby="basic-addon1">
+                              <input type="password" class="form-control" name='up2' placeholder="Repeat Password"  aria-describedby="basic-addon1">
                             </div>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                              </div>
+                                <input type="text" class="form-control" name='phonenumber' placeholder="Phonenumber"  aria-describedby="basic-addon1">
+                            </div>
+
 
 
 

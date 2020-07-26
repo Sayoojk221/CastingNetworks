@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div class='container'>
+    <form method='POST' action='/tags/'>
+        {% csrf_token %}
+        <input type='text' name='tag'>
+        <input type='submit' value='submit'>
+    </form>
+</div>
+</body>
+</html>

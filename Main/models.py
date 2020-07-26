@@ -5,12 +5,13 @@ class Admin(models.Model):
     password = models.CharField(max_length=200,null=True)
 
 class UserRegister(models.Model):
-    name = models.CharField(max_length=200,null=True)
+    fullname = models.CharField(max_length=200,null=True)
+    username = models.CharField(max_length=200,null=True)
     profile_image = models.ImageField(upload_to='user',null=True)
     email = models.CharField(max_length=200,null=True)
     password = models.CharField(max_length=200,null=True)
     address = models.CharField(max_length=200,null=True)
-    district = models.CharField(max_length=200,null=True)
+    state = models.CharField(max_length=200,null=True)
     phone_number = models.CharField(max_length=200,null=True)
     status = models.CharField(max_length=200,null=True)
 
@@ -36,18 +37,23 @@ class Tags(models.Model):
         return self.category
 
 class CastRegister(models.Model):
+    castcall_image = models.ImageField(upload_to='castcall',null=True)
     company_id = models.ForeignKey(FilmCompany,on_delete=models.CASCADE)
     title = models.CharField(max_length=200,null=True)
-    description = models.CharField(max_length=200,null=True)
+    production_description = models.CharField(max_length=1000,null=True)
     gender = models.CharField(max_length=200,null=True)
-    audition_date = models.CharField(max_length=200,null=True)
+    role = models.CharField(max_length=1000,null=True)
+    role_description = models.CharField(max_length=1000,null=True)
+    age = models.CharField(max_length=200,null=True)
+    expire = models.CharField(max_length=200,null=True)
     audition_location = models.CharField(max_length=200,null=True)
     posted_time = models.TimeField(auto_now_add=True)
     posted_date = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tags)
     status = models.CharField(max_length=200,null=True)
 
-
+    def __str__(self):
+        return self.title
 
 class CastBooking(models.Model):
     cast_id = models.ForeignKey(CastRegister,on_delete=models.CASCADE)
@@ -56,6 +62,6 @@ class CastBooking(models.Model):
 
 class FilmPromotion(models.Model):
     company_id = models.ForeignKey(FilmCompany,on_delete=models.CASCADE)
-    promotion_image = models.ImageField(upload_to='promotion',null=True)
+    promotion_video = models.FileField(upload_to='promotionvideos',null='True')
     posted_date = models.DateTimeField(auto_now_add=True)
-    location = models.CharField(max_length=200,null=True)
+    category = models.ManyToManyField(Tags)
