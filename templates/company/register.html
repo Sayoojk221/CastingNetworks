@@ -1,86 +1,97 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Creator Registeration</title>
-
-    <link rel="shortcut icon" href="/static/company/login&register/assets/images/fav.jpg">
-    <link rel="stylesheet" href="/static/company/login&register/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/company/login&register/assets/css/fontawsom-all.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/company/login&register/assets/css/style.css" />
-</head>
-{% include 'base/header.html' %}
-    <body class="h-100">
-        <div class="container-fluid full-bg h-100">
-           <div class="container h-100">
-               <div class="row no-margin h-100">
-                   <div class="bg-layer d-flex col-md-4">
-                        <div class="login-box row">
-                            <h3>Creator Registeration</h3>
-
-                            <form method='POST' action='/companyregister/'  enctype='multipart/form-data'
-                            oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
-                            {% csrf_token %}
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-image"></i></span>
-                              </div>
-                              <input type="File" class="form-control" placeholder="Company logo" name="logo" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-                              </div>
-                              <input type="text" class="form-control" placeholder="Company Name" name="companyname" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
-                              </div>
-                              <input type="text" class="form-control" placeholder="Email Address" name="email" aria-describedby="basic-addon1">
-                            </div>
-                             <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
-                              </div>
-                              <input type="password" class="form-control"  placeholder="Password" name="pass" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
-                              </div>
-                              <input type="password" class="form-control" name='up2' placeholder="Repeat Password"  aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
-                              </div>
-                                <input type="text" class="form-control" name='phonenumber' placeholder="Phonenumber"  aria-describedby="basic-addon1">
-                            </div>
-
-
-
-
-
-                            <button type='submit'  class="btn btn-success">Click to Login</button>
-                          </form>
-                            <p class="no-c">Already have Account? <a href="/companylogin/">Sign In</a></p>
-                        </div>
+{% extends 'company/login&register_base.html' %}
+{% block content %}
+<div class="wrapper">
+    <section class="section section-shaped section-lg">
+      <div class="shape shape-style-1 bg-gradient-default">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="container pt-lg-7">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="card bg-secondary shadow border-0">
+              <div class="card-header bg-white pb-5">
+                <div class="text-muted text-center mb-3"><small>Sign up with</small></div>
+                <div class="text-center">
+                  <a href="#" class="btn btn-neutral btn-icon mr-4">
+                    <span class="btn-inner--icon"><img src="/static/user/login&register/assets/img/icons/common/github.svg"></span>
+                    <span class="btn-inner--text">Github</span>
+                  </a>
+                  <a href="#" class="btn btn-neutral btn-icon">
+                    <span class="btn-inner--icon"><img src="/static/user/login&register/assets/img/icons/common/google.svg"></span>
+                    <span class="btn-inner--text">Google</span>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body px-lg-5 py-lg-5">
+                <div class="text-center text-muted mb-4">
+                  <small>Creator sign up </small>
+                </div>
+                <form role="form" method='POST' action='/companyregister/'  enctype='multipart/form-data'>
+                    {% csrf_token %}
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-image"></i></span>
+                      </div>
+                      <input class="form-control" name='logo' placeholder="Company logo" type="file">
                     </div>
-               </div>
-
-           </div>
-
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                      </div>
+                      <input class="form-control" name='companyname' placeholder="Company Name" type="text">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" name='email' placeholder="Email" type="email">
+                    </div>
+                  </div>
+                  <div class="form-group focused">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input class="form-control" name='pass' placeholder="Password" type="password">
+                    </div>
+                  </div>
+                  <div class="form-group focused">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                      </div>
+                      <input class="form-control" name='phonenumber' placeholder="Phone no" type="text">
+                    </div>
+                  </div>
+                  <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
+                  <div class="row my-4">
+                    <div class="col-12">
+                      <div class="custom-control custom-control-alternative custom-checkbox">
+                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
+                        <label class="custom-control-label" for="customCheckRegister"><span>I agree with the <a href="#">Privacy Policy</a></span></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary mt-4">Create account</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-    </body>
-
-<script src="assets/js/jquery-3.2.1.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/script.js"></script>
-
-
-</html>
-{% include 'base/footer.html' %}
+      </div>
+    </section>
+{% endblock %}

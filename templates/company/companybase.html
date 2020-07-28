@@ -7,8 +7,8 @@
      - https://gettemplates.co/roxy
     -->
     <meta charset="utf-8">
-
-    <title>Cast Networks</title>
+    {% for item in details %}
+    <title>{{item.company_name}}</title>
     <meta name="description" content="Roxy">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -55,8 +55,9 @@
 </div>  <nav id="header-navbar" class="navbar navbar-expand-lg py-4">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center text-white" href="/">
-            <h3 class="font-weight-bolder mb-0">ROXY</h3>
+            <h3 class="font-weight-bolder mb-0">{{item.company_name}}</h3>
         </a>
+        {% endfor %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-nav-header" aria-controls="navbar-nav-header" aria-expanded="false" aria-label="Toggle navigation">
             <span class="lnr lnr-menu"></span>
         </button>
@@ -66,13 +67,19 @@
                     <a class="nav-link" href="/companyhome/">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/companyprofile/">Profile</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/castcallregister/">Castcall register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usercastcallapprove/">User Request</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/filmpromotion/">Add promotions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="/companylogout/">Logout</a>
                 </li>
                 <li class="nav-item">
                     <a id="side-search-open" class="nav-link" href="#">

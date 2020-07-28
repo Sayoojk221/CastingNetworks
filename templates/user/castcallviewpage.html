@@ -1,0 +1,69 @@
+{% extends 'user/userbase.html' %}
+{% block content %}
+<div class="slider">
+    <div class="display-table  center-text">
+      <h1 class="title display-table-cell"><b></b></h1>
+    </div>
+  </div><!-- slider -->
+
+  <section class="post-area section">
+    <div class="container">
+
+      <div class="row">
+        {% for item in details%}
+        <div class="col-lg-8 col-md-12 no-right-padding">
+
+          <div class="main-post">
+
+            <div class="blog-post-inner">
+
+              <div class="post-info">
+
+                <!-- <div class="left-area">
+                  <a class="avatar" href="#"><img src="{{item.company_id.company_log.url}}" alt="Profile Image"></a>
+                </div> -->
+
+                <!-- <div class="middle-area">
+                  <a class="name" href="#"><b>{{item.company_id.company_name}}</b></a>
+                  <h6 class="date">on {{item.posted_date}} at {{item.posted_time}}</h6>
+                </div> -->
+
+              </div><!-- post-info -->
+
+              <h3 class="title"><b>{{item.title}}</b></a></h3><br>
+              <h4 class="title"><b>Production Descriptions</b></a></h3>
+              <br>
+              <p class="para">{{item.production_description}}</p>
+              <br>
+              <h4 class="title"><b>Role Descriptions</b></a></h3><br>
+              <h4 class="title"><b>{{item.role}}&nbsp; {{item.age}}</b></a></h3><br>
+
+              <p class="para">{{item.role_description}}</p>
+              <br>
+              <h4 class="title">Location:&nbsp; {{item.audition_location}}</h3><br>
+
+              <a href='/castcallapply/?id={{item.id}}' class="btn btn-outline-info">Apply</a>
+            </div><!-- blog-post-inner -->
+
+
+
+
+          </div><!-- main-post -->
+        </div><!-- col-lg-8 col-md-12 -->
+
+        <div class="col-lg-4 col-md-11 ">
+
+          <div class="single-post info-area">
+
+            <div class="sidebar-area about-area">
+              <br>
+              <img src="{{item.castcall_image.url}}" width="200" height="500" alt="Profile Image"></a>
+            </div>
+          </div>
+        </div>
+      </div><!-- row -->
+{% endfor %}
+    </div><!-- container -->
+  </section><!-- post-area -->
+
+{% endblock %}

@@ -1,151 +1,91 @@
-<!DOCTYPE html>
-<html lang="zxx">
-
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Casting Network</title>
+    <title>Casting Networks</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
 
-  <!-- mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <!-- ** Plugins Needed for the Project ** -->
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="/static/base/plugins/bootstrap/bootstrap.min.css">
-  <!-- slick slider -->
-  <link rel="stylesheet" href="/static/base/plugins/slick/slick.css">
-  <!-- themefy-icon -->
-  <link rel="stylesheet" href="/static/base/plugins/themify-icons/themify-icons.css">
+    <!-- Font -->
 
-  <!-- Main Stylesheet -->
-  <link href="/static/base/css/style.css" rel="stylesheet">
-  <link href="/static/user/login&register/main.css" rel="stylesheet">
-  <link href="/static/user/login&register/util.css" rel="stylesheet">
-  <!--Favicon-->
-  <link rel="shortcut icon" href="/static/base/images/favicon.ico" type="/static/base/image/x-icon">
-  <link rel="icon" href="/static/base/images/favicon.ico" type="/static/base/image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+    <!-- Stylesheets -->
+
+    <link href="/static/base/common-css/bootstrap.css" rel="stylesheet">
+
+    <link href="/static/base/common-css/ionicons.css" rel="stylesheet">
+
+
+    <link href="/static/base/category-sidebar/css/styles.css" rel="stylesheet">
+
+    <link href="/static/base/category-sidebar/css/responsive.css" rel="stylesheet">
 
 </head>
+<body >
 
-<body>
-  <!-- preloader -->
-  <div class="preloader">
-    <div class="loader">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- /preloader -->
+    <header>
+        <div class="container-fluid position-relative no-side-padding">
 
-<header class="navigation">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="index.html"><img class="img-fluid" src="/static/base/images/logo.png" alt="Casting Networks"></a>
-    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
-      aria-controls="navogation" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            <a href="#" class="logo"><img src="/static/base/images/log.png" alt="Logo Image"></a>
 
-    <div class="collapse navbar-collapse text-center" id="navogation">
-      <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="{% url 'home' %}">Home</a>
-          </li>
-      <li class="nav-item">
-      <li class="nav-item dropdown">
-                          <a class="nav-link text-uppercase text-dark" href="javascript:;" id="nav-inner-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Performers</a>
-                          <div class="dropdown-menu" aria-labelledby="nav-inner-primary_dropdown_1">
-                            <a class="dropdown-item" href="/userlogin/">Login</a>
-                            <a class="dropdown-item" href="/userregister/">Register</a>
+            <div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
-                          </div>
-                        </li>
-                      </li>
-        <li class="nav-item">
-        <li class="nav-item dropdown">
-                          <a class="nav-link text-uppercase text-dark" href="javascript:;" id="nav-inner-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Creators</a>
-                          <div class="dropdown-menu" aria-labelledby="nav-inner-primary_dropdown_1">
-                            <a class="dropdown-item" href="/companylogin/">Login</a>
-                            <a class="dropdown-item" href="/companyregister/">Register</a>
+            <ul class="main-menu visible-on-click" id="main-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/userlogin/">Performer</a></li>
+                <li><a href="/companylogin/">Creator</a></li>
+            </ul><!-- main-menu -->
 
-                          </div>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="category.html">Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="contact.html">Contact</a>
-        </li>
-      </ul>
-      <form class="form-inline position-relative ml-lg-4">
-        <input class="form-control px-0 w-100" type="search" placeholder="Search">
-        <!-- <button class="search-icon" type="submit"><i class="ti-search text-dark"></i></button> -->
-        <a href="search.html" class="search-icon"><i class="ti-search text-dark"></i></a>
-      </form>
-    </div>
-  </nav>
-</header>
+            <div class="src-area">
+                <form>
+                    <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+                    <input class="src-input" type="text" placeholder="Type of search">
+                </form>
+            </div>
+
+        </div><!-- conatiner -->
+    </header>
 {% block content %}
 {% endblock %}
-<footer class="bg-secondary">
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-          <a href="index.html"><img src="/static/base/images/logo.png" alt="persa" class="img-fluid"></a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-          <h6>Address</h6>
-          <ul class="list-unstyled">
-            <li class="font-secondary text-dark">Sydney</li>
-            <li class="font-secondary text-dark">6 rip carl Avenue CA 90733</li>
-          </ul>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-          <h6>Contact Info</h6>
-          <ul class="list-unstyled">
-            <li class="font-secondary text-dark">Tel: +90 000 333 22</li>
-            <li class="font-secondary text-dark">Mail: exmaple@ymail.com</li>
-          </ul>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-          <h6>Follow</h6>
-          <ul class="list-inline d-inline-block">
-            <li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-facebook"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-twitter-alt"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-linkedin"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-github"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+    <footer>
+        <div class="container">
+            <div class="row">
 
-<!-- jQuery -->
-<script src="/static/base/plugins/jQuery/jquery.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="/static/base/plugins/bootstrap/bootstrap.min.js"></script>
-<!-- slick slider -->
-<script src="/static/base/plugins/slick/slick.min.js"></script>
-<!-- masonry -->
-<script src="/static/base/plugins/masonry/masonry.js"></script>
-<!-- instafeed -->
-<script src="/static/base/plugins/instafeed/instafeed.min.js"></script>
-<!-- smooth scroll -->
-<script src="/static/base/plugins/smooth-scroll/smooth-scroll.js"></script>
-<!-- headroom -->
-<script src="/static/base/plugins/headroom/headroom.js"></script>
-<!-- reading time -->
-<script src="/static/base/plugins/reading-time/readingTime.min.js"></script>
+                <div class="col-md-12">
+                    <div class="footer-section">
 
-<!-- Main Script -->
-<script src="/static/base/js/script.js"></script>
+                        <a class="logo" href="#"><img src="/static/base/images/log.png" alt="Logo Image"></a>
+                        <p class="copyright">Bona @ 2020. All rights reserved.</p>
+                        <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Cast Networks</a></p>
+                        <ul class="icons">
+                            <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
+                            <li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
+                            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                            <li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
+                            <li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
+                        </ul>
+
+                    </div><!-- footer-section -->
+                </div><!-- col-md-12 -->
+
+            </div><!-- row -->
+        </div><!-- container -->
+    </footer>
+
+
+    <!-- SCIPTS -->
+
+    <script src="/static/base/common-js/jquery-3.1.1.min.js"></script>
+
+    <script src="/static/base/common-js/tether.min.js"></script>
+
+    <script src="/static/base/common-js/bootstrap.js"></script>
+
+    <script src="/static/base/common-js/scripts.js"></script>
 
 </body>
 </html>
