@@ -4,7 +4,9 @@
   <div class="slider display-table center-text">
     <h1 class="title display-table-cell"><b></b></h1>
   </div><!-- slider -->
-
+  {% for i in tagname %}
+  <h3 style="text-align: center ;">{{i.category}}</h3>
+  {% endfor %}
   <section class="blog-area section">
     <div class="container">
 
@@ -17,7 +19,9 @@
                 {% for item in castcall %}
                 {% if item.status == 'approve' %}
                   <div class="col-md-6 col-sm-12">
+
                     <div class="card h-100">
+
                       <div class="single-post post-style-1">
 
                         <div class="blog-image"><img src="{{item.castcall_image.url}}" alt="Blog Image"></div>
@@ -25,10 +29,9 @@
                         <a class="avatar" href="#"><img src="{{item.company_id.company_log.url}}" alt="Profile Image"></a>
 
                         <div class="blog-info">
-                          <h3 class='title'><b><a href="">{{item.title}}</b></a></h5>
-                          <h4 class="title">{{item.role_description}}</a></h4>
+                          <h3 class='title'><b>{{item.title}}</b></a></h5>
+                          <h4 class="title"><a href='/castcallview/?id={{item.id}}'>{{item.role_description|truncatechars:150}}</a></h4>
                           <h4 class="title">Expire:&nbsp;{{item.expire}}</h4>
-                          <h5 class='title'>Gender:&nbsp;{{item.gender}}</h5>
                           <ul class="post-footer">
                             <li><a href="#"><i class="ion-heart"></i>57</a></li>
                             <li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
@@ -40,6 +43,10 @@
                     </div><!-- card -->
 
                   </div><!-- col-md-6 col-sm-12 -->
+                 <!--  {% else %}
+                  <div class="col-md-6 col-sm-12">
+                    <h3 style="color: red;">Empty</h3>
+                  </div> -->
                   {% endif %}
                   {% endfor %}
                 </div>
@@ -52,11 +59,11 @@
           <div class="single-post info-area ">
 
             <div class="about-area">
-              <h4 class="title"><b>ABOUT Casting Networks</b></h4>
+              <h4 class="title"><b>ABOUT</b></h4>
               <p>Casting Networks, LLC is the leading provider of casting and audition management software to the casting industry. Casting directors and agents worldwide use Casting Networks to source and manage talent across film, television, digital and commercials projects facilitating over a million auditions per year. Headquartered in Los Angeles with offices in New York, London and Sydney.</p>
             </div>
 
-            <div class="subscribe-area">
+            <!-- <div class="subscribe-area">
 
               <h4 class="title"><b>SUBSCRIBE</b></h4>
               <div class="input-area">
@@ -66,22 +73,18 @@
                 </form>
               </div>
 
-            </div><!-- subscribe-area -->
+            </div> --><!-- subscribe-area -->
 
-            <div class="tag-area">
-
-              <h4 class="title"><b>TAG CLOUD</b></h4>
+            <!-- <div class="tag-area">
+              {% if castcall %}
+              <h4 class="title"><b>Category</b></h4>
+              {% for i in tags %}
               <ul>
-                <li><a href="#">Manual</a></li>
-                <li><a href="#">Liberty</a></li>
-                <li><a href="#">Recomendation</a></li>
-                <li><a href="#">Interpritation</a></li>
-                <li><a href="#">Manual</a></li>
-                <li><a href="#">Liberty</a></li>
-                <li><a href="#">Recomendation</a></li>
-                <li><a href="#">Interpritation</a></li>
-              </ul>
+                <li><a href="/?id={{i.id}}">{{i.category}}</a></li>
 
+              </ul>
+              {% endfor %}
+              {% endif %} -->
             </div><!-- subscribe-area -->
 
           </div><!-- info-area -->

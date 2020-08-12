@@ -1,0 +1,39 @@
+{% extends 'user/userbase.html' %}
+{% block content %}
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100 ver1 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="cell100 column1">Company Name</th>
+                                <th class="cell100 column2">Role</th>
+                                <th class="cell100 column3">Location</th>
+                                <th class="cell100 column4">Age</th>
+                                <th class="cell100 column6"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="table100-body js-pscroll">
+                    <table>
+                        {% for item in castcall %}
+
+                        <tbody>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">{{item.cast_id.company_id.company_name}}</td>
+                                <td class="cell100 column2">{{item.cast_id.role}}</td>
+                                <td class="cell100 column3">{{item.cast_id.audition_location}}</td>
+                                <td class="cell100 column4">{{item.cast_id.age}}</td>
+                                <td class='cell100 column6'><a href="/castcalldelete/?id={{item.id}}">delete</a></td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+{% endblock %}

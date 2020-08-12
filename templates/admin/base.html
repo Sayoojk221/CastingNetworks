@@ -63,12 +63,12 @@
                             <img src="/static/admin/main/plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
                         </b>
                         <!-- Logo text image you can use text also -->
-                        <span class="hidden-xs">
+                        <!-- <span class="hidden-xs">
                             <!--This is dark logo text-->
-                            <img src="/static/admin/main/plugins/images/admin-text.png" alt="home" class="dark-logo" />
-                            <!--This is light logo text-->
-                            <img src="/static/admin/main/plugins/images/admin-text-dark.png" alt="home" class="light-logo" />
-                        </span>
+                            <!-- <img src="/static/admin/main/plugins/images/admin-text.png" alt="home" class="dark-logo" />
+                            This is light logo text
+                            <img src="/static/admin/main/plugins/images/admin-text-dark.png" alt="home" class="light-logo" /> -->
+                        </span> -->
                     </a>
                 </div>
                 <!-- /Logo -->
@@ -84,9 +84,9 @@
                             </a>
                         </form>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="profile-pic" href="#"> <img src="/static/admin/main/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b></a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-header -->
@@ -148,14 +148,21 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
-                   <!--  <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard</h4> </div>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title"></h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a>
+                        {% if user_header %}
                         <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="/admintotaluserview/"><b>Total user</b></a></li>
+                             <li><a href="/adminuserview/"><b>Requested user</b></a></li>
                         </ol>
-                    </div> -->
+                        {% elif company_header %}
+                        <ol class="breadcrumb">
+                            <li><a href="/admintotalcompanyview/"><b>Total company</b></a></li>
+                             <li><a href="/admincompanyview/"><b>Requested company</b></a></li>
+                        </ol>
+                        {% endif %}
+                    </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->

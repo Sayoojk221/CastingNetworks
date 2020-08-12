@@ -1,21 +1,23 @@
 from django.shortcuts import render,redirect
 from Main.models import *
-from django.http import JsonResponse
 
 def admin(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['pass']
-        admin_details = Admin.objects.all().filter(username=username,password=password)
-        for i in admin_details:
-            request.session['admin-id']=i.id
-        if admin_details:
-            return redirect('/admindashboard/')
+    if request.session.has_key('admin-id'):
+        return redirect('/admindashboard/')
+    else:
+        if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['pass']
+            admin_details = Admin.objects.all().filter(username=username,password=password)
+            for i in admin_details:
+                request.session['admin-id']=i.id
+            if admin_details:
+                return redirect('/admindashboard/')
 
+            else:
+                return render(request,'admin/login.html')
         else:
             return render(request,'admin/login.html')
-    else:
-        return render(request,'admin/login.html')
 
 def admin_dashboard(request):
     if request.session.has_key('admin-id'):
@@ -36,21 +38,43 @@ def admin_logout(request):
 
 
 def home(request):
-    castcall_details = CastRegister.objects.all()
-    context = {'castcall':castcall_details}
-    return render(request,'base/home.html',context)
+    tag_id = request.GET.get('id')
+    all_tags = Tags.objects.all()
+    if tag_id:
+        tagname = Tags.objects.filter(id=tag_id)
+        castcall_details = CastRegister.objects.all().filter(tags=tag_id)
+        context = {'castcall':castcall_details,'tagname':tagname,'tags':all_tags}
+        return render(request,'base/home.html',context)
+    else:
+        castcall_details = CastRegister.objects.all()
+        context = {'castcall':castcall_details,'tags':all_tags}
+        return render(request,'base/home.html',context)
 
 def user_home(request):
-    user = request.session['user-id']
-    booked_castcall_details = CastBooking.objects.all().filter(user_id=user).values('cast_id')
-    total_booked_castcall_id = []
-    for item in booked_castcall_details:
-        for i in item:
-            total_booked_castcall_id.append(item[i])
+    tag_id = request.GET.get('id')
+    all_tags = Tags.objects.all()
+    if tag_id:
+        user = request.session['user-id']
+        booked_castcall_details = CastBooking.objects.all().filter(user_id=user).values('cast_id')
+        total_booked_castcall_id = []
+        for item in booked_castcall_details:
+            for i in item:
+                total_booked_castcall_id.append(item[i])
+        tagname = Tags.objects.filter(id=tag_id)
+        castcall_details = CastRegister.objects.all().filter(tags=tag_id)
+        context = {'castcall':castcall_details,'total_id':total_booked_castcall_id,'tagname':tagname,'tags':all_tags}
+        return render(request,'user/homepage.html',context)
+    else:
+        user = request.session['user-id']
+        booked_castcall_details = CastBooking.objects.all().filter(user_id=user).values('cast_id')
+        total_booked_castcall_id = []
+        for item in booked_castcall_details:
+            for i in item:
+                total_booked_castcall_id.append(item[i])
 
-    castcall_details = CastRegister.objects.all()
-    context = {'castcall':castcall_details,'total_id':total_booked_castcall_id}
-    return render(request,'user/homepage.html',context)
+        castcall_details = CastRegister.objects.all()
+        context = {'castcall':castcall_details,'total_id':total_booked_castcall_id,'tags':all_tags}
+        return render(request,'user/homepage.html',context)
 
 def company_home(request):
     companyid = request.session['company-id']
@@ -65,7 +89,7 @@ def user_login(request):
         if request.method == 'POST':
             email = request.POST['email']
             password = request.POST['pass']
-            user_details = UserRegister.objects.all().filter(email=email,password=password)
+            user_details = UserRegister.objects.all().filter(email=email,password=password,status='approve')
             for i in user_details:
                 request.session['user-id']=i.id
             if user_details:
@@ -181,7 +205,7 @@ def company_login(request):
         if request.method == 'POST':
             email = request.POST['email']
             password = request.POST['pass']
-            company_details = FilmCompany.objects.all().filter(email=email,password=password)
+            company_details = FilmCompany.objects.all().filter(email=email,password=password,status='approve')
             for i in company_details:
                 request.session['company-id']=i.id
                 companyid = i.id
@@ -266,7 +290,7 @@ def film_promotion(request):
             return render(request,'company/filmpromotion.html',context)
 
     else:
-        return render(request,'comapny/login.html')
+        return render(request,'company/login.html')
 
 def castcall_view(request):
     if request.session.has_key('user-id'):
@@ -274,6 +298,8 @@ def castcall_view(request):
         clickedcastcall_details= CastRegister.objects.filter(id=castcall_id)
         context = {'details':clickedcastcall_details}
         return render(request,'user/castcallviewpage.html',context)
+    else:
+        return render(request,'user/login.html',{'error':'login please'})
 
 def castcall_apply(request):
     if request.session.has_key('user-id'):
@@ -291,8 +317,8 @@ def adminuser_view(request):
         user_details = UserRegister.objects.all().filter(status='pending')
         user_id = request.GET.get('id')
         UserRegister.objects.all().filter(id=user_id).update(status='approve')
-        context = {'user_details':user_details}
-        return render(request,'admin/userapprove.html',context)
+        context = {'user_request':user_details,'user_header':'0'}
+        return render(request,'admin/user.html',context)
     else:
         return redirect('/admin/')
 
@@ -301,8 +327,8 @@ def admincompany_view(request):
         company_details = FilmCompany.objects.all().filter(status='pending')
         company_id = request.GET.get('id')
         FilmCompany.objects.all().filter(id=company_id).update(status='approve')
-        context = {'company_details':company_details}
-        return render(request,'admin/companyapprove.html',context)
+        context = {'company_request':company_details,'company_header':"0"}
+        return render(request,'admin/company.html',context)
     else:
         return redirect('/admin/')
 
@@ -312,11 +338,11 @@ def admincast_view(request):
         clickedcastcall_id = request.GET.get('id')
         CastRegister.objects.all().filter(id=clickedcastcall_id).update(status='approve')
         context={'cast_details':totalcastcall_details}
-        return render(request,'admin/castapprove.html',context)
+        return render(request,'admin/cast.html',context)
     else:
         return redirect('/admin/')
 
-def usercastcall_approve(request):
+def usercastcallrequest_approve(request):
     if request.session.has_key('company-id'):
         applied_castcall_id = request.GET.get('id')
         CastBooking.objects.all().filter(id=applied_castcall_id).update(approve_status='approved')
@@ -325,3 +351,30 @@ def usercastcall_approve(request):
         return render(request,'company/usercastcall.html',context)
     else:
         return redirect('/companylogin/')
+
+def admintotaluser_view(request):
+    user_details = UserRegister.objects.all().filter(status='approve')
+    context = {'user_total':user_details,'user_header':'0'}
+    return render(request,'admin/user.html',context)
+
+def admintotalcompany_view(request):
+    company_details = FilmCompany.objects.all().filter(status='approve')
+    context = {'company_total':company_details,'company_header':'0'}
+    return render(request,'admin/company.html',context)
+
+
+def promotion_video(request):
+    video_details = FilmPromotion.objects.all()
+    context = {'video':video_details}
+    return render(request,'user/promotionvideo.html',context)
+
+def usertotalcast_call(request):
+    user = request.session['user-id']
+    applied_castcall = CastBooking.objects.all().filter(user_id=user)
+    context = {'castcall':applied_castcall}
+    return render(request,'user/totalcastcall_applied.html',context)
+
+def castcall_delete(request):
+    castcall_id = request.GET.get('id')
+    CastBooking.objects.all().filter(id=castcall_id).delete()
+    return redirect('/usertotalcastcall/')
