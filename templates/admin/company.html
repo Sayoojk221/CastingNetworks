@@ -1,0 +1,56 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<body class="fix-header">
+    <!-- /row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                {% if company_total %}
+                <h3 class="box-title">Total Companys</h3>
+                {% elif company_request %}
+                <h3 class="box-title">Requested Companys</h3>
+                {% endif %}
+<!--                 <p class="text-muted">Add class <code>.table</code></p>
+ -->                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th>Company name</th>
+                                <th>Email</th>
+                                <th>Phone number</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for item in company_request %}
+
+                            <tr>
+                                <td>{{item.company_name}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.phone_number}}</td>
+                                <td><a href="/admincompanyview/?id={{item.id}}" class='btn btn btn-rounded btn-default btn-outline m-r-5'>approve</a></td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+                        <tbody>
+                            {% for item in company_total %}
+
+                            <tr>
+                                <td>{{item.company_name}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.phone_number}}</td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+{% endblock %}

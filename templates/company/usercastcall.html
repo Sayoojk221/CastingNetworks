@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>user Cast call approve</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="/static/company/usercastcallapprove/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/company/usercastcallapprove/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/company/usercastcallapprove/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/company/usercastcallapprove/vendor/animate/animate.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/company/usercastcallapprove/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/company/usercastcallapprove/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/company/usercastcallapprove/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/static/company/usercastcallapprove/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table100 ver1 m-b-110">
+                    <div class="table100-head">
+                        <table>
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column1">Name</th>
+                                    <th class="cell100 column2">Email</th>
+                                    <th class="cell100 column3">Phone no</th>
+                                    <th class="cell100 column4">Cast Title</th>
+                                    <th class="cell100 column5">Cast Role</th>
+                                    <th class="cell100 column6"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div class="table100-body js-pscroll">
+                        <table>
+                            {% for item in total_castcall%}
+
+                            <tbody>
+                                <tr class="row100 body">
+                                    <td class="cell100 column1">{{item.user_id.fullname}}</td>
+                                    <td class="cell100 column2">{{item.user_id.email}}</td>
+                                    <td class="cell100 column3">{{item.user_id.phone_number}}</td>
+                                    <td class="cell100 column4">{{item.cast_id.title}}</td>
+                                    <td class="cell100 column5">{{item.cast_id.role}}</td>
+                                    <td class='cell100 column6'><a href="/usercastcallapprove/?id={{item.id}}">approve</a></td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+<!--===============================================================================================-->
+    <script src="/static/company/usercastcallapprove/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/static/company/usercastcallapprove/vendor/bootstrap/js/popper.js"></script>
+    <script src="/static/company/usercastcallapprove//static/company/usercastcallapprove/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/static/company/usercastcallapprove/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+    <script src="/static/company/usercastcallapprove/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+        $('.js-pscroll').each(function(){
+            var ps = new PerfectScrollbar(this);
+
+            $(window).on('resize', function(){
+                ps.update();
+            })
+        });
+
+
+    </script>
+<!--===============================================================================================-->
+    <script src="/static/company/usercastcallapprove/js/main.js"></script>
+
+</body>
+</html>

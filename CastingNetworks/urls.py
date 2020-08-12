@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-#from Main.views import admin
-
+from Main import views
+from django.conf.urls.static import  static
+from django.conf import settings
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    #path('admin/',admin),
+    path('admin/',views.admin),
+    path('admindashboard/',views.admin_dashboard),
     path('', include('Main.urls')),
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

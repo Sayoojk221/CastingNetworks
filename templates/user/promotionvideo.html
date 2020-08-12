@@ -1,0 +1,80 @@
+{% extends 'user/userbase.html' %}
+{% block content %}
+
+  <div class="slider display-table center-text">
+    <h1 class="title display-table-cell"><b></b></h1>
+  </div><!-- slider -->
+  <section class="blog-area section">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-8 col-md-12">
+          <div class="row">
+            <div class='container'>
+              <div class='row'>
+                {% for item in video %}
+                  <div class="col-md-6 col-sm-12">
+                    <div class="card h-100">
+                      <div class='row'>
+                        <div class="blog-info">
+                            <h4 class='title'>{{item.company_id.company_name}}</h4>
+                          <video width='320' height= '240' controls preload="none">
+                            <source src='{{item.promotion_video.url}}' type='video/mp4'>
+                            Your browser does not support the video tag.
+                            </video>
+                        </div><!-- blog-info -->
+                      </div><!-- single-post -->
+                    </div><!-- card -->
+
+                  </div><!-- col-md-6 col-sm-12 -->
+                  {% endfor %}
+                </div>
+              </div>
+          </div><!-- row -->
+        </div><!-- col-lg-8 col-md-12 -->
+
+        <div class="col-lg-4 col-md-12 ">
+
+          <div class="single-post info-area ">
+
+            <div class="about-area">
+              <h4 class="title"><b>ABOUT Casting Networks</b></h4>
+              <p>Casting Networks, LLC is the leading provider of casting and audition management software to the casting industry. Casting directors and agents worldwide use Casting Networks to source and manage talent across film, television, digital and commercials projects facilitating over a million auditions per year. Headquartered in Los Angeles with offices in New York, London and Sydney.</p>
+            </div>
+
+            <div class="subscribe-area">
+
+              <h4 class="title"><b>SUBSCRIBE</b></h4>
+              <div class="input-area">
+                <form>
+                  <input class="email-input" type="text" placeholder="Enter your email">
+                  <button class="submit-btn" type="submit"><i class="ion-ios-email-outline"></i></button>
+                </form>
+              </div>
+
+            </div><!-- subscribe-area -->
+
+            <div class="tag-area">
+
+              <h4 class="title"><b>Category</b></h4>
+              {% for i in tags %}
+              <ul>
+                <li><a href="/userhome/?id={{i.id}}">{{i.category}}</a></li>
+
+              </ul>
+              {% endfor %}
+
+            </div><!-- subscribe-area -->
+
+          </div><!-- info-area -->
+
+        </div><!-- col-lg-4 col-md-12 -->
+
+      </div><!-- row -->
+
+    </div><!-- container -->
+  </section><!-- section -->
+
+
+{% endblock %}
